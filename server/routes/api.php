@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobPostingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/jobs', [JobPostingController::class, 'getAllJobPosting']);
+
+Route::get('/jobs/{id}', [JobPostingController::class, 'getJobPostingById']);
+
+Route::post('/jobs', [JobPostingController::class, 'createNewJobPosting']);
+
+Route::put('/jobs', [JobPostingController::class, 'updateJobPostingById']);
+
+Route::delete('/jobs', [JobPostingController::class, 'deleteJobPostingById']);
